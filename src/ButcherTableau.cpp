@@ -1,4 +1,4 @@
-#include "pp_hed/ButcherTableau.hpp"
+#include "ButcherTableau.hpp"
 #include <map>
 
 static const pp_hed::ButcherTableau midpoint{{
@@ -391,7 +391,7 @@ static const std::map<std::string, pp_hed::ButcherTableau> tables_ = {
   {"rkf4_5_A", rkf4_5_A},
   {"rkf4_5_B", rkf4_5_B},
   {"cash_karp", cash_karp},
-  {"domand_prince", dormand_prince}
+  {"dormand_prince", dormand_prince}
 };
 
 pp_hed::ButcherTableau pp_hed::get_butcher_tableau(std::string id) {

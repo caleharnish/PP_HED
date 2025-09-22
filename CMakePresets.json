@@ -1,106 +1,107 @@
 {
-    "configurePresets": [
-        {
-            "name": "mpicc",
-            "description": "Sets up mpicc compiler",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_CXX_COMPILER": {
-                    "type": "STRING",
-                    "value": "mpic++"
-                },
-                "CMAKE_C_COMPILER": {
-                    "type": "STRING",
-                    "value": "mpicc"
-                }
-            }
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "mpicc",
+      "description": "Sets up mpicc compiler",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": {
+          "type": "STRING",
+          "value": "mpic++"
         },
-        {
-            "name": "default",
-            "description": "Default profile sets up basic variables",
-            "hidden": true,
-            "binaryDir": "${sourceDir}/build/default",
-            "inherits": "mpicc",
-            "cacheVariables": {
-                "CMAKE_CXX_FLAGS": {
-                    "type": "STRING",
-                    "value": "-fno-math-errno"
-                },
-                "CMAKE_C_FLAGS": {
-                    "type": "STRING",
-                    "value": "-fno-math-errno"
-                },
-                "CMAKE_CXX_STANDARD": {
-                    "type": "STRING",
-                    "value": "20"
-                }
-            }
-        },
-        {
-            "name": "release_flags",
-            "description": "Sets up release flags",
-            "hidden": true,
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": {
-                    "type": "STRING",
-                    "value": "Release"
-                },
-                "CMAKE_CXX_FLAGS_RELEASE": {
-                    "type": "STRING",
-                    "value": "-O3"
-                },
-                "CMAKE_C_FLAGS_RELEASE": {
-                    "type": "STRING",
-                    "value": "-O3"
-                }
-            }
-        },
-        {
-            "name": "release",
-            "description": "Production build enables -O3 and disables debugging",
-            "binaryDir": "${sourceDir}/build/release",
-            "inherits": "release_flags"
-        },
-        {
-            "name": "fastest",
-            "description": "Production build enables -O3 and disables debugging and verbose output",
-            "binaryDir": "${sourceDir}/build/fastest",
-            "inherits": "release",
-            "cacheVariables": {
-                "CMAKE_CXX_FLAGS": {
-                    "type": "STRING",
-                    "value": "-DNDEBUG -fno-math-errno"
-                }
-            }
-        },
-        {
-            "name": "og",
-            "description": "Debug build enables -Og",
-            "binaryDir": "${sourceDir}/build/og",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": {
-                    "type": "STRING",
-                    "value": "Debug"
-                },
-                "CMAKE_CXX_FLAGS": {
-                    "type": "STRING",
-                    "value": "-Og -fno-math-errno"
-                }
-            }
-        },
-        {
-            "name": "debug",
-            "description": "Full debug build",
-            "binaryDir": "${sourceDir}/build/debug",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": {
-                    "type": "STRING",
-                    "value": "Debug"
-                }
-            }
+        "CMAKE_C_COMPILER": {
+          "type": "STRING",
+          "value": "mpicc"
         }
-    ]
+      }
+    },
+      {
+          "name": "default",
+          "description": "Default profile sets up basic variables",
+          "hidden": true,
+          "binaryDir": "${sourceDir}/build/default",
+          "inherits": "mpicc",
+          "cacheVariables": {
+              "CMAKE_CXX_FLAGS": {
+                  "type": "STRING",
+                  "value": "-fno-math-errno"
+              },
+              "CMAKE_C_FLAGS": {
+                  "type": "STRING",
+                  "value": "-fno-math-errno"
+              },
+              "CMAKE_CXX_STANDARD": {
+                  "type": "STRING",
+                  "value": "20"
+              }
+          }
+      },
+      {
+          "name": "release_flags",
+          "description": "Sets up release flags",
+          "hidden": true,
+          "inherits": "default",
+          "cacheVariables": {
+              "CMAKE_BUILD_TYPE": {
+                  "type": "STRING",
+                  "value": "Release"
+              },
+              "CMAKE_CXX_FLAGS_RELEASE": {
+                  "type": "STRING",
+                  "value": "-O3"
+              },
+              "CMAKE_C_FLAGS_RELEASE": {
+                  "type": "STRING",
+                  "value": "-O3"
+              }
+          }
+      },
+      {
+          "name": "release",
+          "description": "Production build enables -O3 and disables debugging",
+          "binaryDir": "${sourceDir}/build/release",
+          "inherits": "release_flags"
+      },
+      {
+          "name": "fastest",
+          "description": "Production build enables -O3 and disables debugging and verbose output",
+          "binaryDir": "${sourceDir}/build/fastest",
+          "inherits": "release",
+          "cacheVariables": {
+              "CMAKE_CXX_FLAGS": {
+                  "type": "STRING",
+                  "value": "-DNDEBUG -fno-math-errno"
+              }
+          }
+      },
+      {
+          "name": "og",
+          "description": "Debug build enables -Og",
+          "binaryDir": "${sourceDir}/build/og",
+          "inherits": "default",
+          "cacheVariables": {
+              "CMAKE_BUILD_TYPE": {
+                  "type": "STRING",
+                  "value": "Debug"
+              },
+              "CMAKE_CXX_FLAGS": {
+                  "type": "STRING",
+                  "value": "-Og -fno-math-errno"
+              }
+          }
+      },
+      {
+          "name": "debug",
+          "description": "Full debug build",
+          "binaryDir": "${sourceDir}/build/debug",
+          "inherits": "default",
+          "cacheVariables": {
+              "CMAKE_BUILD_TYPE": {
+                  "type": "STRING",
+                  "value": "Debug"
+              }
+          }
+      }
+  ]
 }

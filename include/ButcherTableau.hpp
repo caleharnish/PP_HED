@@ -60,7 +60,7 @@ struct ButcherTableau
     }
 
     if (is_embedded_) {
-      vout("{} is using error coefficients = {}\n", name_, e_);
+      // vout("{} is using error coefficients = {}\n", name_, e_);
     }
   }
 
@@ -113,8 +113,8 @@ struct ButcherTableau
     if (term > 0) {
       for (int i = term - 1, e = stage; i < e; i++) {
         coeff += a(stage, i) * coeffBC(term - 1, i, output);
-        if (output) print("a[{},{}] ", stage, i);
-        if (output and i < e - 1) print("+ ");
+        // if (output) print("a[{},{}] ", stage, i);
+        // if (output and i < e - 1) print("+ ");
       }
     } else {
       return 1.0;

@@ -1,3 +1,6 @@
+add_library(pp_hed STATIC
+  ButcherTableau.cpp)
+
 target_compile_features(pp_hed PUBLIC cxx_std_23)
 target_include_directories(pp_hed PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
