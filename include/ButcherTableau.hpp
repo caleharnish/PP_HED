@@ -3,6 +3,7 @@
 #include <span>
 #include <string_view>
 #include <vector>
+#include <iostream>
 
 namespace pp_hed {
 struct ButcherTableau
@@ -58,10 +59,6 @@ struct ButcherTableau
     for (int k = 0; k < n_stages_; ++k) {
       e_[k] = b_[k] - bstar_[k];
     }
-
-    if (is_embedded_) {
-      // vout("{} is using error coefficients = {}\n", name_, e_);
-    }
   }
 
   std::string_view name() const {
@@ -113,8 +110,6 @@ struct ButcherTableau
     if (term > 0) {
       for (int i = term - 1, e = stage; i < e; i++) {
         coeff += a(stage, i) * coeffBC(term - 1, i, output);
-        // if (output) print("a[{},{}] ", stage, i);
-        // if (output and i < e - 1) print("+ ");
       }
     } else {
       return 1.0;
@@ -140,5 +135,5 @@ struct ButcherTableau
 ///  "cash_karp"
 ///  "domand_prince"
 ///
-ButcherTableau get_butcher_tableau(std::string = "rkf4_5_A");
+ButcherTableau get_butcher_tableau(std::string_view = "rkf4_5_A");
 }

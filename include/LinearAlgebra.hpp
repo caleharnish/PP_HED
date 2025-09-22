@@ -5,6 +5,7 @@
 #include <iomanip>  //for setw
 #include <cmath>    //for sqrt and cbrt
 #include <complex>  //for complex numbers
+#include <iostream>
 
 template <class ValueType>
 class Vector {

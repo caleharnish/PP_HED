@@ -375,7 +375,7 @@ static const pp_hed::ButcherTableau dormand_prince{{
   }};
 
 // Using a map because it's easy and performance here doesn't matter.
-static const std::map<std::string, pp_hed::ButcherTableau> tables_ = {
+static const std::map<std::string_view, pp_hed::ButcherTableau> tables_ = {
   {"midpoint", midpoint},
   {"heun", heun},
   {"heun3", heun3},
@@ -394,7 +394,7 @@ static const std::map<std::string, pp_hed::ButcherTableau> tables_ = {
   {"dormand_prince", dormand_prince}
 };
 
-pp_hed::ButcherTableau pp_hed::get_butcher_tableau(std::string id) {
+pp_hed::ButcherTableau pp_hed::get_butcher_tableau(std::string_view id) {
   if (auto i = tables_.find(id); i != tables_.end()) {
     return i->second;
   }
