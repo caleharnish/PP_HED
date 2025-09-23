@@ -1,8 +1,18 @@
 #pragma once
 
-#include <cstdint>
+#include <cmath> //for trig
+#include <numbers> //for pi
 
-namespace pp_hed {
-    // using offset_t = std::int32_t;
-    using offset_t = std::int64_t;
+double PFL_current(double Ipeak, double τpeak, double t) {
+  double π = std::numbers::pi;
+  double arg = π * t / (2.0 * τpeak);
+
+  return Ipeak * sin(arg) * sin(arg);
+}
+
+double LTD_current(double Ipeak, double τpeak, double t) {
+  double π = std::numbers::pi;
+  double arg = π * t / (2.0 * τpeak);
+
+  return Ipeak * sin(arg);
 }

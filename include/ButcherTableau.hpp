@@ -104,25 +104,13 @@ struct ButcherTableau
   double e(int i) const {
     return e_[i];
   }
-
-  double coeffBC(int term, int stage, bool output = false) const {
-    double coeff = 0.0;
-    if (term > 0) {
-      for (int i = term - 1, e = stage; i < e; i++) {
-        coeff += a(stage, i) * coeffBC(term - 1, i, output);
-      }
-    } else {
-      return 1.0;
-    }
-    return coeff;
-  }
 };
 
 /// Create a ButcherTableau.
 ///
 /// Valid string identifiers are:
 ///
-///  "midpoint"
+///  "Midpoint"
 ///  "heun"
 ///  "ralston"
 ///  "rk4"
