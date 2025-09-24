@@ -27,24 +27,33 @@ int main(int argc, char * const argv[])
   // Define problem-specific information.
   // --------------------------------------------------------------------
   double τpeak = 100 * 1e-9; // 100 ns rise time
-
   double h = 7.5 * 1e-3; // 7.5 mm height of liner
-  double ρ = 1850; // 1850 kg/m^3 density of Beryllium
 
   // These are the values for part (b)
+  // double ρ = 1850; // 1850 kg/m^3 density of Beryllium
   // double Ipeak = 18 * 1e6; // 18 MA peak current
   // double r_lo = 2.79 * 1e-3; // 2.79 mm initial radius of liner (outer)
   // double r_go = 2.325 * 1e-3; // 2.325 mm initial radius of liner (inner)
 
   // These are the values for part (c)
+  // double ρ = 1850; // 1850 kg/m^3 density of Beryllium
   // double Ipeak = 1 * 1e6; // 1 MA peak current
   // double r_lo = 2.79 * 1e-3; // 2.79 mm initial radius of liner (outer)
   // double r_go = 2.78868 * 1e-3; // 2.78868 mm initial radius of liner (inner)
 
   // These are the values for part (d)
-  double Ipeak = 1 * 1e6; // 1 MA peak current
-  double r_lo = 2 * 2.79 * 1e-3; // 2 * 2.79 mm initial radius of liner (outer)
-  double r_go = 5.57984 * 1e-3; // 5.57984 mm initial radius of liner (inner)
+  // double ρ = 1850; // 1850 kg/m^3 density of Beryllium
+  // double Ipeak = 1 * 1e6; // 1 MA peak current
+  // double r_lo = 2 * 2.79 * 1e-3; // 2 * 2.79 mm initial radius of liner (outer)
+  // double r_go = 5.57984 * 1e-3; // 5.57984 mm initial radius of liner (inner)
+
+  // These are the values for part (e)
+  // double ρ = 1850; // Π = 3
+  // double ρ = 1387.5; // Π = 4
+  double ρ = 1110; // Π = 5
+  double Ipeak = 18 * 1e6; // 18 MA peak current
+  double r_lo = 2.79 * 1e-3; // 2.79 mm initial radius of liner (outer)
+  double r_go = 2.325 * 1e-3; // 2.325 mm initial radius of liner (inner)
 
   double volume = π * (r_lo * r_lo - r_go * r_go) * h;
   double mass = ρ * volume;
@@ -65,7 +74,9 @@ int main(int argc, char * const argv[])
     RHS_data[0] = fields[1];
 
     // v_dot RHS
-    double current = PFL_current(Ipeak, τpeak, t);
+    // double current = PFL_current(Ipeak, τpeak, t);
+    double current = LTD_current(Ipeak, τpeak, t);
+
     double numerator = - μ0 * h * current * current;
     double denominator = 4.0 * π * mass * fields[0];
     RHS_data[1] = numerator / denominator;
@@ -116,7 +127,7 @@ int main(int argc, char * const argv[])
   // --------------------------------------------------------------------
   std::cout << "Time-marching with " << RKtable.name() << " integrator" << std::endl;
   std::cout << "Step " << 0 << ": t = " << t << ", r_l = " << fields[0]
-            << ", v_l = " << fields[1] << ", I = " << PFL_current(Ipeak, τpeak, t)
+            << ", v_l = " << fields[1] << ", I = " << LTD_current(Ipeak, τpeak, t)
             << ", C_r = " << 1.0 << ", KE = " << 0.0 << std::endl;
 
   for (int step = 1; step < num_steps; ++step) {
@@ -130,7 +141,7 @@ int main(int argc, char * const argv[])
 
     // Print current state
     std::cout << "Step " << step << ": t = " << t << ", r_l = " << fields[0]
-              << ", v_l = " << fields[1] << ", I = " << PFL_current(Ipeak, τpeak, t)
+              << ", v_l = " << fields[1] << ", I = " << LTD_current(Ipeak, τpeak, t)
               << ", C_r = " << ratio << ", KE = " << KE << std::endl;
 
     // Check for possible early exit
